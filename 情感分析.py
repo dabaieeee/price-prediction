@@ -3,19 +3,19 @@ import pandas as pd
 
 # 停用词典过滤
 stop_words = []
-with open('G:/00毕业论文/3 情感分析/词典/SnowNLP停用词.txt','r',encoding='utf-8') as f:
+with open('../dictionary/SnowNLP停用词.txt','r',encoding='utf-8') as f:
 	for word in f:
 		stop_words.append(word.strip()) # Python strip() 方法用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列。
 
 # 读取否定词文件
 negative_words = []
-with open('G:/00毕业论文/3 情感分析/词典/否定词.txt','r',encoding='utf-8') as f:
+with open('../dictionary/否定词.txt','r',encoding='utf-8') as f:
 	for word in f:
 		negative_words.append(word.strip())
 
 # 读取程度副词文件
 degree_words = []
-with open('G:/00毕业论文/3 情感分析/词典/程度副词.txt','r',encoding='utf-8') as f:
+with open('../dictionary/程度副词.txt','r',encoding='utf-8') as f:
 	for word in f:
 		degree_words.append(word.rstrip(",2"))
 
@@ -38,7 +38,7 @@ def seg_word(sentence):
 # 找出文本中的情感词、否定词和程度副词
 def classify_words(word_list):
 	# 读取情感词典文件
-	with open('G:/00毕业论文/3 情感分析/词典/Jiang20Yao21_media_sentiment_score.txt', 'r+', encoding='utf-8') as f:
+	with open('../dictionary/Jiang20Yao21_media_sentiment_score.txt', 'r+', encoding='utf-8') as f:
 		emo_list = f.readlines()
 		emo_dict = {}     # 创建情感字典
 		# 读取词典每一行的内容，将其转换成字典对象，key为情感词，value为其对应的权重
@@ -47,11 +47,11 @@ def classify_words(word_list):
 				emo_dict[i.split(' ')[0]] = i.split(' ')[1]
 
 	# 读取否定词文件
-	with open('G:/00毕业论文/3 情感分析/词典/否定词.txt', 'r+', encoding='utf-8') as f:
+	with open('../dictionary/否定词.txt', 'r+', encoding='utf-8') as f:
 		negative_words = f.readlines()
 
 	# 读取程度副词文件
-	with open('G:/00毕业论文/3 情感分析/词典/程度副词.txt', 'r+', encoding='utf-8') as f:
+	with open('../dictionary/程度副词.txt', 'r+', encoding='utf-8') as f:
 		degree_list = f.readlines()
 		degree_dict = {}
 		for i in degree_list:
@@ -116,7 +116,7 @@ def emotion_score(sentence):
 
 if __name__ == '__main__':
 	# 读取待分析文本数据
-	data = pd.read_csv('G:/00毕业论文/2 数据/螺纹钢.csv').astype(str)
+	data = pd.read_csv('螺纹钢.csv').astype(str)
 	print("数据已读取！")
 	sentence = data.title
 
