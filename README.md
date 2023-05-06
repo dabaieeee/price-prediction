@@ -1,2 +1,2 @@
 # price-prediction
-Research on futures price prediction incorporating sentiment analysis
+Research on price prediction incorporating sentiment analysis
